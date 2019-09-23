@@ -378,8 +378,9 @@ HELP
       @xcodes = parse_seedlist(spaceship.send(:request, :post,
                                               '/services-account/QH65B2/downloadws/listDownloads.action').body)
 
-      names = @xcodes.map(&:name)
-      @xcodes += prereleases.reject { |pre| names.include?(pre.name) }
+      # https://github.com/xcpretty/xcode-install/issues/348
+      #names = @xcodes.map(&:name)
+      #@xcodes += prereleases.reject { |pre| names.include?(pre.name) }
 
       File.open(LIST_FILE, 'wb') do |f|
         f << Marshal.dump(xcodes)
